@@ -82,6 +82,7 @@ button{font:inherit;font-size:17px;font-weight:600;border:none;border-radius:999
 .answers{min-block-size:24px;font-size:14px;color:var(--muted)}
 .stamp{display:inline-block;margin-block:10px;padding:6px 16px;border:3px solid var(--accent);color:var(--accent);border-radius:10px;font-weight:800;letter-spacing:2px;transform:rotate(-8deg);animation:stamp .6s ease .3s both}
 @keyframes stamp{0%{transform:rotate(-8deg) scale(3);opacity:0}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+.kiss{font-size:38px;font-weight:800;color:var(--accent);font-family:Georgia,serif;margin-block:14px 6px;animation:pop .9s ease 1s both}
 /* Celebration */
 .hurrah{font-size:42px;animation:pop .9s ease}
 @keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.25);opacity:1}100%{transform:scale(1)}}
@@ -202,6 +203,9 @@ button{font:inherit;font-size:17px;font-weight:600;border:none;border-radius:999
       <div class="t-valid">Condition: Aayush overthink nahi karega, aur Ojasvi chatpati baatein karti rahegi 😌</div>
     </div>
     <p>Promise, aapko kabhi sad nahi karunga. Is smile ke liye kuch bhi 😊❤️🤞</p>
+    <div class="kiss">Ummmmaaahhh 😘💋</div>
+    <p class="happy">Lots and lots of kisses, meri baby girl 💋💋💋</p>
+    <div class="btns"><button class="primary glow" id="moreKiss">Aur kisses chahiye? 😘</button></div>
     <p class="small">Iska screenshot bhej do na 🥹 — Aapka Aayush ❤️</p>
   </section>
 </main>
@@ -326,7 +330,18 @@ button{font:inherit;font-size:17px;font-weight:600;border:none;border-radius:999
     show("sPlea");
   });
   $("askAgain").addEventListener("click", () => show("s3"));
-  const forgiven = () => { show("s6"); confetti(); burst(); setTimeout(burst, 700); setTimeout(confetti, 1500); };
+  const forgiven = () => { show("s6"); confetti(); burst(); setTimeout(burst, 700); setTimeout(kisses, 1500); };
+  function kisses(){
+    for (let i = 0; i < 45; i++) setTimeout(() => {
+      const c = document.createElement("span");
+      c.className = "confetti"; c.textContent = pick(["💋","😘","💋","😚","💋","❤️"]);
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.fontSize = (20 + Math.random() * 22) + "px";
+      c.style.animationDuration = (2.5 + Math.random() * 2.5) + "s";
+      document.body.appendChild(c); setTimeout(() => c.remove(), 5500);
+    }, i * 60);
+  }
+  $("moreKiss").addEventListener("click", kisses);
   yesBtn.addEventListener("click", forgiven);
   $("pleaYes").addEventListener("click", forgiven);
 </script>
